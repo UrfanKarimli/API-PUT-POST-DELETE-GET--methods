@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none !important;
+  list-style-type: none !important;
+}
+
+#delete {
+  cursor: pointer;
+}/*# sourceMappingURL=style.css.map */
