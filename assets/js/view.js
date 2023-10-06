@@ -2,8 +2,10 @@
 const nameInput = document.querySelector("#exampleInputName")
 const mail = document.querySelector("#exampleInputEmail1")
 const password = document.querySelector("#exampleInputPassword1");
-const btnUpdate = document.querySelector("#register");
+const btnUpdate = document.querySelector("#update");
 const tableBody = document.querySelector("#tableBody");
+const mainForm = document.querySelector("#mainForm")
+
 
 // ? base url
 const BASE_URL = "http://localhost:9000";
@@ -16,7 +18,7 @@ fetch(`http://localhost:9000/get-data`)
     .then((response) => response.json())
     .then((data) => {
 
-        console.log(data.data);
+        // console.log(data.data);
         data.data.map((item) => {
             if (item.id === id1) {
                 tableBody.innerHTML += `
@@ -26,9 +28,16 @@ fetch(`http://localhost:9000/get-data`)
         <td>${item.email}</td>
         <td>${item.password}</td>
         <td id="delete"><button type="button" class="btn btn-danger btn-sm" id="delBtn" onclick="deleteItem(${item.id})">delete</button></td>
-        <td id="update"><button type="button"  id="updateLink" class="btn btn-success btn-sm" onclick="updateItem(${item.id})" >Update</button>  </td>
     </tr>
     `;
+            }
+
+        })
+        data.data.map((item) => {
+            if (item.id === id1) {
+                mainForm.innerHTML += `
+                <button type="button" class="btn btn-primary" id="update" onclick="updateItem(${item.id})" >update</button>
+                `
             }
         })
     })
@@ -60,6 +69,7 @@ function updateItem(id) {
         email: mail.value,
         password: password.value,
     };
+    console.log(id);
 
 if (nameInput.value.trim() == "" || mail.value.trim() == "" || password.value.trim() == "") {
         alert("xanalari bos saxlamayin")
